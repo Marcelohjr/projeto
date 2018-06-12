@@ -58,5 +58,5 @@ create table ItemVenda(
     fkProduto int not null,
     primary key(idItemVenda),
     foreign key(fkVenda) references Vendas(idVenda),
-	foreign key(fkProduto) references Vendas(idProduto)
+	foreign key(fkProduto) references Produtos(idProduto)
 );
