@@ -127,11 +127,11 @@
             <div class="navbar-dropdown is-right">
               <?php
                 if ($loged['0']==1) {
-                  echo '<a class="navbar-item">';
+                  echo '<a href="'.base_url('index.php/profile/1').'"class="navbar-item">';
                    echo ' <span class="icon is-small">';
                      echo ' <i class="fa fa-user-o"></i>';
                     echo '</span>';
-                    echo 'Profile';
+                    echo 'Perfil';
                   echo '</a>';
                   echo '<hr class="navbar-divider">';
                   echo '<a class="navbar-item">';

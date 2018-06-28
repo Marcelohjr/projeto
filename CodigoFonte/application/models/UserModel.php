@@ -1,12 +1,9 @@
 <?php
-class UserModel extends CI_Model(){
-
-	public funcition getDados(){
-		$query = $this->db->get('');	
+class UserModel extends CI_Model{
+	public function getUserById($id){
+		$query = $this->db->get_where('Pessoas', array('idPessoa' => $id));	
+		return $query->result();	
 	}
-
-
-
 
 }
 ?>

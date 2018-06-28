@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['sobre'] = 'LandingPage/Sobre';
 $route['carrinho'] = 'LandingPage/ShowTheCart';
+$route['profile/(:num)'] = 'LandingPage/ShowTheProfile/$1';
 $route['rmvproduto/(:any)'] = 'LandingPage/RemoveProductTheCart/$1';
 $route['updtproduto/(:any)'] = 'LandingPage/UpdateQtyProductTheCart/$1';
 $route['listacategoria/(:num)'] = 'LandingPage/ListaCategoria/$1';

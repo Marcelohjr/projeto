@@ -84,4 +84,17 @@ class LandingPage extends CI_Controller {
 		$this->cart->update($data);
 		$this->ShowTheCart();
 	}
+	public function ShowTheProfile($id)
+	{
+		$dados['loged']=$this->LoadBase();
+		$this->load->model('CategoriaModel');
+		$dados['categorias']=$this->CategoriaModel->getCategorias();
+		$this->load->model('UserModel');
+		$dados['dadoUsuario']=$this->UserModel->getUserById($id);
+		$this->load->model('EnderecoModel');
+		$dados['dadoEndereco']=$this->EnderecoModel->getEnderecoById($dados['dadoUsuario'][0]->endereco);
+		$dados['home']="";
+		$dados['sobre']="";
+		$this->load->view('perfil', $dados);
+	}
 }

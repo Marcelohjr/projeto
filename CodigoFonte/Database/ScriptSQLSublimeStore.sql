@@ -6,12 +6,13 @@ create table Enderecos(
     bairro varchar(100),
     estado varchar(50),
     cep varchar(10),
+    complemento varchar(20),
     logradouro varchar(50),
     endereco varchar(100), /*Nome da "rua"*/
-    numero tinyint,
+    numero int,
     referencia text,
     primary key(idEndereco)
-); /*LEMBRAR DE ALTERAR AS ENGINE'S DAS OUTRAS TABELAS PARA MYSAM*/
+);
 create table Pessoas(
 	idPessoa int not null auto_increment,
     nome varchar(100),
@@ -22,6 +23,7 @@ create table Pessoas(
     pessoaImagem text,
     dataNascimento date,
     senha varchar(50),
+    sexo varchar(20),
     cpf varchar(15),
     primary key(idPessoa),
     foreign key(endereco) references Enderecos(idEndereco)
@@ -43,6 +45,8 @@ create table Produtos(
     desconto numeric(8,2),
     categoria int,
     quantidade int,
+    datadecadastro datetime,
+    qntvendas int,
     genero tinyint, 	/*o genêro é 1 para Feminino e 2 para Masculino e 3 para unissex*/
     primary key(idProduto),
     foreign key(categoria) references Categorias(idCategoria)
