@@ -23,7 +23,7 @@ element.style {
 .h-100 {
     height: 100%!important;
 }
-.card {
+.card-an{
     position: relative;
     display: -ms-flexbox;
     display: flex;
@@ -35,6 +35,25 @@ element.style {
     background-clip: border-box;
     border: 0.5px solid #d5d5d5;
     border-radius: .25rem;
+}
+.card-title {
+    margin-bottom: .75rem;
+}
+.card-footer:last-child {
+    border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);
+}
+.card-footer {
+    padding: .75rem 1.25rem;
+    background-color: rgba(0,0,0,.03);
+    border-top: 1px solid rgba(0,0,0,.125);
+}
+.card-text:last-child {
+    margin-bottom: 0;
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
 }
 *, ::after, ::before {
     box-sizing: border-box;
@@ -153,4 +172,49 @@ section>.container {
     line-height: 1.4;
     color: #4b4b4b;
     margin: 16px 0 0;
+}
+.card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+}
+#map {
+        height: 400px;
+        width: 100%;
+       }
+.button.is-rounded {
+    border-radius: 290486px;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.cardc{
+    position: relative;
+    /*display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;*/
+
+    height: auto;
+    background-color: #fff;
+    border: 0.5px solid #d5d5d5;
+    border-radius: .25rem;
+}
+@media screen and (min-width: 600px){
+    .ctrl {
+        width: 100%;
+    }
+}
+@media screen and (min-width: 601px) and (max-width: 900px){
+    .ctrl {
+        width: 20%;
+    }
+}
+@media screen and (min-width: 901){
+    .ctrl {
+        width: 20%;
+    }
+}
+.pimagem{
+    width:100px;
+    height:400px;
 }

@@ -32,87 +32,38 @@
 
             <div class="columns is-multiline">
 
-              <div class="column">
-                <div class="card h-100">
-                  <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      <a href="#">Item One</a>
-                    </h4>
-                    <h5>$24.99</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                  </div>
-                </div>
-              </div>
-
-              <div class="column">
-                <div class="card h-100">
-                  <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      <a href="#">Item One</a>
-                    </h4>
-                    <h5>$24.99</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                  </div>
-                </div>
-              </div>
-
-              <div class="column">
-                <div class="card h-100">
-                  <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      <a href="#">Item One</a>
-                    </h4>
-                    <h5>$24.99</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                  </div>
-                </div>
-              </div>
-
-              <div class="column">
-                <div class="card h-100">
-                  <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      <a href="#">Item One</a>
-                    </h4>
-                    <h5>$24.99</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                  </div>
-                </div>
-              </div>
-
-              <div class="column">
-                <div class="card h-100">
-                  <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      <a href="#">Item One</a>
-                    </h4>
-                    <h5>$24.99</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                  </div>
-                </div>
-              </div>
+              <?php 
+                  if (empty($lastprodutos)) {    
+                    echo '<div class="columns is-multiline">';
+                    echo '<div class="column">'; 
+                    echo '<br><br><br><br><br>';   
+                    echo '<h2 style="font-family: proximanova-light,Arial,sans-serif;font-size:35px; text-align:center;"><i class="fa fa-frown-o fa-lg" aria-hidden="true"></i>&nbsp;Desculpe, nenhum resultado encontrado!</h2>';    
+                    echo '<br><br><br><br>';       
+                    echo '</div>';
+                    echo '</div>';
+                  }else{
+                     foreach ($lastprodutos as $prod) {
+                       echo '<div class="column" style="max-width: 20%;">';
+                       echo '<div class="card-an h-100">';
+                       echo '<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>';
+                       echo '<div class="card-body" >';
+                       echo '<h4 class="card-title">';
+                       echo '<a href="#">'.$prod->nomeProduto.'</a>';
+                       echo '</h4>';
+                       $valor = $prod->valorCusto + (($prod->valorCusto*$prod->percentualLucro)/100);
+                       echo '<h5>R$ &nbsp;'.$valor.'</h5>';
+                       echo '<p class="card-text">'.$prod->descricaoResumida.'</p>';
+                       echo '</div>';
+                       echo '<div class="card-footer">';
+                       echo '<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>';
+                       echo '<a href="'.base_url('index.php/addcarrinho/'.$prod->idProduto).'" class="button is-rounded is-primary level-right is-small " style="right: 4%; position: absolute; bottom: 3% "><b>Adicionar</b></a>';
+                       echo '</div>';
+                       echo '</div>';
+                       echo '</div>';  
+                     }             
+                  }  
+               ?>
             </div>
-
             <div class="level">
               <div class="level-left">
                 <div class="level-item">
@@ -126,90 +77,38 @@
               </div>
             </div>
             <div class="columns is-multiline">
-                    <div class="column">
-                      <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                        <div class="card-body">
-                          <h4 class="card-title">
-                            <a href="#">Item One</a>
-                          </h4>
-                          <h5>$24.99</h5>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                        </div>
-                        <div class="card-footer">
-                          <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                        </div>
-                      </div>
-                    </div>
-
-
-                  <div class="column">
-                    <div class="card h-100">
-                      <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                      <div class="card-body">
-                        <h4 class="card-title">
-                          <a href="#">Item One</a>
-                        </h4>
-                        <h5>$24.99</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                      </div>
-                      <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                      </div>
-                    </div>
-                  </div>
-
-
-                <div class="column">
-                  <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                    <div class="card-body">
-                      <h4 class="card-title">
-                        <a href="#">Item One</a>
-                      </h4>
-                      <h5>$24.99</h5>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                  </div>
-                </div>
-
-
-              <div class="column">
-                <div class="card h-100">
-                  <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      <a href="#">Item One</a>
-                    </h4>
-                    <h5>$24.99</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                  </div>
-                </div>
-              </div>
-
-
-            <div class="column">
-              <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                <div class="card-body">
-                  <h4 class="card-title">
-                    <a href="#">Item One</a>
-                  </h4>
-                  <h5>$24.99</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                </div>
-                <div class="card-footer">
-                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                </div>
-              </div>
+                <?php 
+                  if (empty($maisvendidosprodutos)) {    
+                    echo '<div class="columns is-multiline">';
+                    echo '<div class="column">'; 
+                    echo '<br><br><br><br><br>';   
+                    echo '<h2 style="font-family: proximanova-light,Arial,sans-serif;font-size:35px; text-align:center;"><i class="fa fa-frown-o fa-lg" aria-hidden="true"></i>&nbsp;Desculpe, nenhum resultado encontrado!</h2>';    
+                    echo '<br><br><br><br>';       
+                    echo '</div>';
+                    echo '</div>';
+                  }else{
+                     foreach ($maisvendidosprodutos as $prod) {
+                       echo '<div class="column" style="max-width: 20%;">';
+                       echo '<div class="card-an h-100">';
+                       echo '<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>';
+                       echo '<div class="card-body" >';
+                       echo '<h4 class="card-title">';
+                       echo '<a href="#">'.$prod->nomeProduto.'</a>';
+                       echo '</h4>';
+                       $valor = $prod->valorCusto + (($prod->valorCusto*$prod->percentualLucro)/100);
+                       echo '<h5>R$ &nbsp;'.$valor.'</h5>';
+                       echo '<p class="card-text">'.$prod->descricaoResumida.'</p>';
+                       echo '</div>';
+                       echo '<div class="card-footer">';
+                       echo '<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>';
+                       echo '<a href="'.base_url('index.php/addcarrinho/'.$prod->idProduto).'" class="button is-rounded is-primary level-right is-small " style="right: 4%; position: absolute; bottom: 3% "><b>Adicionar</b></a>';
+                       echo '</div>';
+                       echo '</div>';
+                       echo '</div>';  
+                     }             
+                  }  
+               ?>    
             </div>
-          </div>
                         <div class="level">
                           <div class="level-left">
                             <div class="level-item">

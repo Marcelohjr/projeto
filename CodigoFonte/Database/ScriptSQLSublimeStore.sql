@@ -11,7 +11,7 @@ create table Enderecos(
     numero tinyint,
     referencia text,
     primary key(idEndereco)
-)engine=MySam; /*LEMBRAR DE ALTERAR AS ENGINE'S DAS OUTRAS TABELAS PARA MYSAM*/
+); /*LEMBRAR DE ALTERAR AS ENGINE'S DAS OUTRAS TABELAS PARA MYSAM*/
 create table Pessoas(
 	idPessoa int not null auto_increment,
     nome varchar(100),
@@ -26,24 +26,33 @@ create table Pessoas(
     primary key(idPessoa),
     foreign key(endereco) references Enderecos(idEndereco)
 );
+create table Categorias(
+	idCategoria int not null auto_increment,
+    nome varchar(100),
+    sexo varchar(10),
+    primary key(idCategoria)
+);
+create table Produtos(
+	idProduto int not null auto_increment,
+    nomeProduto varchar(200),
+    descricaoResumida varchar(100),
+    descricao text,
+    marca varchar(100),
+    valorCusto numeric(8,2),
+    percentualLucro tinyint,
+    desconto numeric(8,2),
+    categoria int,
+    quantidade int,
+    genero tinyint, 	/*o genêro é 1 para Feminino e 2 para Masculino e 3 para unissex*/
+    primary key(idProduto),
+    foreign key(categoria) references Categorias(idCategoria)
+);
 create table ProdutoImagens(
 	idProdutoImagem int not null auto_increment,
     produto int, /*Referencia imagens referente a este produto*/
     enderecoImagem text,
     primary key(idProdutoImagem),
     foreign key(produto) references Produtos(idProduto)
-);
-create table Produtos(
-	idProduto int not null auto_increment,
-    nomeProduto varchar(200),
-    descricao text,
-    marca varchar(100),
-    valorCusto numeric(8,2),
-    percentualLucro tinyint,
-    desconto numeric(8,2),
-    categoria varchar(50),
-    genero tinyint, 	/*o genêro é 0 para Feminino e 1 para Masculino e 2 para unissex*/
-    primary key(idProduto)
 );
 create table Vendas(
 	idVenda int not null auto_increment,
