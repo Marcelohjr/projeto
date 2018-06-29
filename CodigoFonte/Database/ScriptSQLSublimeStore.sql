@@ -47,7 +47,7 @@ create table Produtos(
     quantidade int,
     datadecadastro datetime,
     qntvendas int,
-    genero tinyint, 	/*o genêro é 1 para Feminino e 2 para Masculino e 3 para unissex*/
+    genero varchar(10),
     primary key(idProduto),
     foreign key(categoria) references Categorias(idCategoria)
 );

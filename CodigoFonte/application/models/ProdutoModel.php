@@ -4,6 +4,10 @@ class ProdutoModel extends CI_Model{
 		$query = $this->db->get_where('Produtos', array('categoria' => $id));	
 		return $query->result();
 	}
+	public function getProdutos(){ 
+		$query = $this->db->get('Produtos');	
+		return $query->result();
+	}
 	public function getLastProdutos(){
 		$this->db->select('*')->order_by('datadecadastro', 'DESC')->limit(5);
 		$query = $this->db->get('Produtos');	

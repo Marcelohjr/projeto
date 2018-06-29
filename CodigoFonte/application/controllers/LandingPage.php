@@ -169,7 +169,7 @@ class LandingPage extends CI_Controller {
 			'complemento' => $complemento,
 			'logradouro' => $logradouro,
 			'endereco' => $endereco,
-			//'numero' => $numero,
+			'numero' => $numero,
 			'referencia' => $referencia
 			);
 		$str = $this->db->insert_string('Enderecos', $dadosEndereco);
@@ -220,13 +220,87 @@ class LandingPage extends CI_Controller {
 	{
 		$this->load->model('CategoriaModel');
 		$dados['categorias']=$this->CategoriaModel->getCategorias();
-		$this->load->model('UserModel');
-		$dados['dadoUsuario']=$this->UserModel->getUserById(1);
-		$this->load->model('EnderecoModel');
-		$dados['dadoEndereco']=$this->EnderecoModel->getEnderecoById($dados['dadoUsuario'][0]->endereco);
+		$this->load->model('ProdutoModel');
+		$dados['produtos']=$this->ProdutoModel->getProdutos();
 		$dados['home']="";
 		$dados['sobre']="";
+		$dados['mensage']=0;
 		$this->load->view('administrador', $dados);
 	}
-
+	public function SetCategorias()
+	{
+		$this->load->model('CategoriaModel');
+		$dados['categorias']=$this->CategoriaModel->getCategorias();
+		$dados['home']="";
+		$this->load->model('ProdutoModel');
+		$dados['produtos']=$this->ProdutoModel->getProdutos();
+		$dados['sobre']="";
+		$nomeCat = $_POST['cnome'];
+		$generoCat = $_POST['cgenero'];
+		$dadosCat = array(
+				'nome' => $nomeCat,
+				'sexo' => $generoCat
+				);
+			$str = $this->db->insert_string('Categorias', $dadosCat);
+			$this->db->query($str);
+			$sucess = $this->db->affected_rows();
+			if ($sucess) {
+				$this->session->set_userdata('mensage', 1);
+				$this->session->set_userdata('tipomensage', 'is-success');
+				$this->session->set_userdata('mensagem', 'Categoria cadastrada com sucesso!');
+				header('Location: admin');
+			}else{
+				$this->session->set_userdata('mensage', 1);
+				$this->session->set_userdata('tipomensage', 'is-danger');
+				$this->session->set_userdata('mensagem', 'Falha ao efetuar cadastro! Informe ao administrador.');
+				header('Location: admin');
+			}
+	}
+	public function SetProdutos()
+	{
+		$this->load->model('CategoriaModel');
+		$dados['categorias']=$this->CategoriaModel->getCategorias();
+		$dados['home']="";
+		$this->load->model('ProdutoModel');
+		$dados['produtos']=$this->ProdutoModel->getProdutos();
+		$dados['sobre']="";
+		$nome = $_POST['pnome'];
+		$marca = $_POST['marca'];
+		$valorCusto = $_POST['valorcusto'];
+		$percentualLucro = $_POST['percentuallucro'];
+		$desconto = $_POST['desconto'];
+		$categoria = $_POST['categoria'];
+		$quantidade = $_POST['quantidade'];
+		$genero = $_POST['pgenero'];
+		$descR = $_POST['descricaoresumida'];
+		$descC = $_POST['descricao'];
+		$dadosProduto = array(
+			'nomeProduto' => $nome,
+			'descricaoResumida' => $descR,
+			'descricao' => $descC,
+			'marca' => $marca,
+			'valorCusto' => $valorCusto,
+			'percentualLucro' => $percentualLucro,
+			'desconto' => $desconto,
+			'categoria' => $categoria,
+			'quantidade' => $quantidade,
+			'datadecadastro' => 'now()',
+			'qntvendas' => 0,
+			'genero' => $genero
+			);
+		$str = $this->db->insert_string('Produtos', $dadosProduto);
+		$this->db->query($str);
+		$sucess = $this->db->affected_rows();
+		if ($sucess) {
+			$this->session->set_userdata('mensage', 1);
+			$this->session->set_userdata('tipomensage', 'is-success');
+			$this->session->set_userdata('mensagem', 'Produto cadastrado com sucesso!');
+			header('Location: admin');
+		}else{
+			$this->session->set_userdata('mensage', 1);
+			$this->session->set_userdata('tipomensage', 'is-danger');
+			$this->session->set_userdata('mensagem', 'Falha ao efetuar cadastro! Informe ao administrador.');
+			header('Location: admin');
+		}
+	}
 }
