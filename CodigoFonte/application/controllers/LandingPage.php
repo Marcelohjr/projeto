@@ -102,8 +102,9 @@ class LandingPage extends CI_Controller {
 		$cont=0;
 		$cont2=0;
 		$result="";
-		while (1) {
-			if ($nome[$cont]==" ") {
+		$a = strlen($nome);
+		while ($cont<$a) {
+			if (($nome[$cont]==" ")||($cont==$a)) {
 				break;
 			}else{
 				$result[$cont2]=$nome[$cont];
@@ -144,5 +145,74 @@ class LandingPage extends CI_Controller {
 		$this->session->sess_destroy();
 		header('Location: home'); 
 	}
-
+	public function ShowRegistrar()
+	{
+		$this->load->view('cadastrarUser');
+	}
+	public function Registrar()
+	{
+		$endereco = $_POST['endereco'];
+		$logradouro = $_POST['logradouro'];
+		$numero = $_POST['numero'];
+		$complemento = $_POST['complemento'];
+		$cidade = $_POST['cidade'];
+		$bairro = $_POST['bairro'];
+		$estado = $_POST['estado'];
+		$cep = $_POST['cep'];
+		$referencia = $_POST['referencia'];
+		$dadosEndereco = array(
+			'cidade' => $cidade,
+			'bairro' => $bairro,
+			'estado' => $estado,
+			'cep' => $cep,
+			'complemento' => $complemento,
+			'logradouro' => $logradouro,
+			'endereco' => $endereco,
+			//'numero' => $numero,
+			'referencia' => $referencia
+			);
+		$str = $this->db->insert_string('Enderecos', $dadosEndereco);
+		$this->db->query($str);
+		$sucess = $this->db->affected_rows();
+		if ($sucess) {
+			$this->db->select_max('idEndereco');
+			$query = $this->db->get('Enderecos');
+			$idendereco = $query->result();
+			$nome = $_POST['nome'];
+			$email = $_POST['email'];
+			$cpf = $_POST['cpf'];
+			$dataNasc = $_POST['nascimento'];
+			$telefone = $_POST['telefone'];
+			$senha = $_POST['senha'];
+			$cSenha = $_POST['confirmaSenha'];
+			$sexo = $_POST['sexo'];
+			$imagem = $_POST['imagem'];
+			$dadosPessoa = array(
+				'nome' => $nome,
+				'endereco' => $idendereco[0]->idEndereco,
+				'privilegio' => 0,
+				'email' => $email,
+				'telefone' => $telefone,
+				//'pessoaImagem' => $imagem,
+				'dataNascimento' => $dataNasc,
+				'senha' => $senha,
+				'sexo' => $sexo,
+				'cpf' => $cpf
+				);
+			$str = $this->db->insert_string('Pessoas', $dadosPessoa);
+			$this->db->query($str);
+			$sucess2 = $this->db->affected_rows();
+			if ($sucess2) {
+				$this->ValidaLogin();
+			}else{
+				$dados['mensage']=1;
+				$dados['mensagem']="Falha! Dados de Usuário incorretos!";
+				$this->load->view('cadastrarUser', $dados);
+			}
+		}else{
+			$dados['mensage']=1;
+			$dados['mensagem']="Falha! Dados de endereço incorretos!";
+			$this->load->view('cadastrarUser', $dados);
+		}		
+	}
 }

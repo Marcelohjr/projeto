@@ -9,7 +9,7 @@ create table Enderecos(
     complemento varchar(20),
     logradouro varchar(50),
     endereco varchar(100), /*Nome da "rua"*/
-    numero int,
+    numero varchar(10),
     referencia text,
     primary key(idEndereco)
 );

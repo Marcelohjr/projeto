@@ -148,7 +148,7 @@
                     echo '&nbsp;Entrar';
                   echo '</a>';
                   echo '<hr class="navbar-divider">';
-                  echo '<a class="navbar-item">';
+                  echo '<a href="'.base_url('index.php/cadastrar').'" class="navbar-item">';
                     echo '<span class="icon is-small">';
                       echo '<i class="fa fa-user-plus"></i>';
                     echo '</span>';
