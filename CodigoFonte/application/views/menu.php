@@ -97,15 +97,13 @@
           <a class="navbar-item is-tab is-hidden-tablet">Feminino</a>
           <a class="navbar-item is-tab is-hidden-tablet">Sobre</a>
           <?php
-            if ((isset($this->session->loged))&&($this->session->loged==1)){ 
             echo '<a href="'.base_url('index.php/carrinho').'" class="navbar-item nav-tag">';
             echo '<span class="icon is-medium">';
             echo ' <i class="fa fa-cart-plus "></i>';
             echo '</span>';
             echo '<span class="tag is-primary tag-notif is-small" style="background-color: #fff;color: #cc99cc;"><b>'.$this->cart->total_items().'</b></span>';
             echo '</a>';
-            }
-           ?>
+            ?>
           <div class="navbar-item has-dropdown is-hoverable">
             <?php
              if ((isset($this->session->loged))&&($this->session->loged==1)) {
@@ -133,6 +131,15 @@
                     echo '</span>';
                     echo 'Perfil';
                   echo '</a>';
+                  if ($this->session->priv) {
+                  echo '<hr class="navbar-divider">';  
+                  echo '<a href="'.base_url('index.php/admin').'" class="navbar-item">';
+                   echo ' <span class="icon is-small">';
+                     echo ' <i class="fa fa-cogs"></i>';
+                    echo '</span>';
+                    echo 'Administrador';
+                  echo '</a>';
+                  }
                   echo '<hr class="navbar-divider">';
                   echo '<a href="'.base_url('index.php/sair').'" class="navbar-item">';
                     echo '<span class="icon is-small">';

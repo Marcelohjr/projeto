@@ -35,7 +35,7 @@ class LandingPage extends CI_Controller {
 	}
 	public function Sobre()
 	{
-		$dados['loged']=$this->LoadBase();
+		$this->LoadBase();
 		$this->load->model('CategoriaModel');
 		$dados['categorias']=$this->CategoriaModel->getCategorias();
 		$dados['home']="";
@@ -65,7 +65,7 @@ class LandingPage extends CI_Controller {
 	}
 	public function ShowTheCart()
 	{
-		$dados['loged']=$this->LoadBase();	
+		$this->LoadBase();	
 		$this->load->model('CategoriaModel');
 		$dados['categorias']=$this->CategoriaModel->getCategorias();
 		$dados['home']="";
@@ -127,6 +127,7 @@ class LandingPage extends CI_Controller {
 			$this->session->set_userdata('loged', 1);
 			$this->session->set_userdata('idUser', $dados['dadoUsuario'][0]->idPessoa);
 			$this->session->set_userdata('userImage', $dados['dadoUsuario'][0]->pessoaImagem);
+			$this->session->set_userdata('priv', $dados['dadoUsuario'][0]->privilegio);
 			$this->session->set_userdata('userName', $this->ReduzNome($dados['dadoUsuario'][0]->nome));
 			$this->index();
 		}else{
@@ -215,4 +216,17 @@ class LandingPage extends CI_Controller {
 			$this->load->view('cadastrarUser', $dados);
 		}		
 	}
+	public function Administrator()
+	{
+		$this->load->model('CategoriaModel');
+		$dados['categorias']=$this->CategoriaModel->getCategorias();
+		$this->load->model('UserModel');
+		$dados['dadoUsuario']=$this->UserModel->getUserById(1);
+		$this->load->model('EnderecoModel');
+		$dados['dadoEndereco']=$this->EnderecoModel->getEnderecoById($dados['dadoUsuario'][0]->endereco);
+		$dados['home']="";
+		$dados['sobre']="";
+		$this->load->view('administrador', $dados);
+	}
+
 }

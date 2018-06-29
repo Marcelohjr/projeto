@@ -60,6 +60,7 @@ $route['cadastrar'] = 'LandingPage/ShowRegistrar';
 $route['registrar'] = 'LandingPage/Registrar';
 $route['sair'] = 'LandingPage/Logout';
 $route['valida'] = 'LandingPage/ValidaLogin';
+$route['admin'] = 'LandingPage/Administrator';
 $route['profile/(:num)'] = 'LandingPage/ShowTheProfile/$1';
 $route['rmvproduto/(:any)'] = 'LandingPage/RemoveProductTheCart/$1';
 $route['updtproduto/(:any)'] = 'LandingPage/UpdateQtyProductTheCart/$1';
