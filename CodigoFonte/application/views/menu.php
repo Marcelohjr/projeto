@@ -97,7 +97,7 @@
           <a class="navbar-item is-tab is-hidden-tablet">Feminino</a>
           <a class="navbar-item is-tab is-hidden-tablet">Sobre</a>
           <?php
-            if ($loged['0']==1) { 
+            if ((isset($this->session->loged))&&($this->session->loged==1)){ 
             echo '<a href="'.base_url('index.php/carrinho').'" class="navbar-item nav-tag">';
             echo '<span class="icon is-medium">';
             echo ' <i class="fa fa-cart-plus "></i>';
@@ -108,12 +108,12 @@
            ?>
           <div class="navbar-item has-dropdown is-hoverable">
             <?php
-             if ($loged['0']==1) {
+             if ((isset($this->session->loged))&&($this->session->loged==1)) {
                echo '<a class="navbar-link">';
                  echo '<figure class="image is-32x32" style="margin-right:.5em;">';
-                   echo '<img src="https://avatars1.githubusercontent.com/u/7221389?v=4&s=32">';
+                   echo '<img src="'.base_url('assets/img/').$this->session->userImage.'">';
                  echo '</figure>';
-                 echo 'mazipan';
+                 echo $this->session->userName;
                echo '</a>';
               }else{
                  echo '<a class="navbar-link">';
@@ -126,22 +126,22 @@
             ?>          
             <div class="navbar-dropdown is-right">
               <?php
-                if ($loged['0']==1) {
-                  echo '<a href="'.base_url('index.php/profile/1').'"class="navbar-item">';
+                if ((isset($this->session->loged))&&($this->session->loged==1)) {
+                  echo '<a href="'.base_url('index.php/profile/').$this->session->idUser.'" class="navbar-item">';
                    echo ' <span class="icon is-small">';
                      echo ' <i class="fa fa-user-o"></i>';
                     echo '</span>';
                     echo 'Perfil';
                   echo '</a>';
                   echo '<hr class="navbar-divider">';
-                  echo '<a class="navbar-item">';
+                  echo '<a href="'.base_url('index.php/sair').'" class="navbar-item">';
                     echo '<span class="icon is-small">';
                       echo '<i class="fa fa-power-off"></i>';
                     echo '</span>';
                     echo 'Logout';
                   echo '</a>';
                 }else{
-                  echo '<a class="navbar-item">';
+                  echo '<a class="navbar-item" href="'.base_url('index.php/login').'">';
                    echo ' <span class="icon is-small">';
                      echo ' <i class="fa fa-user-o"></i>';
                     echo '</span>';
