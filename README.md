@@ -9,4 +9,4 @@
 # 6 - chatbot
 # 7 - produtos detalhes
 # 8 - Apos finalizar a compra desenvolver pagina para conferir dados, verificar estoque e assim concluir a venda
-
+# 9 - Desenvolver a função "Editar" de categoria e produtos no modulo administrador

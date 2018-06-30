@@ -11,6 +11,7 @@
             <nav class="breadcrumb is-small" aria-label="breadcrumbs">
               <ul>
                <li class="is-active"><a href="#"><i class="fa fa-tachometer"> </i> &nbsp;&nbsp;Carrinho</a></li>
+               
               </ul>
             </nav>
 
@@ -37,7 +38,7 @@
                       echo '<div class="card" style="border-radius: 5px;">';
                           echo '<header class="card-header">';
                             echo '<p class="card-header-title">';
-                               echo '<a href="#">'.$itens['name'].'</a>';
+                               echo '<a href="'.base_url('index.php/detalhe/').$itens['id'].'">'.$itens['name'].'</a>';
                             echo '</p>';
                             echo '<a href="'.base_url('index.php/rmvproduto/').$itens['rowid'].'" class="card-header-icon" aria-label="more options">';
                               echo '<span class="icon">';
@@ -49,7 +50,7 @@
                             echo '<div class="content">';
                              echo '<div class="columns is-multiline" >';
                               echo '<div class="column">';
-                               echo '<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>';
+                               echo '<a href="'.base_url('index.php/detalhe/').$itens['id'].'"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>';
                               echo '</div>';
                               echo '<div class="column">';
                               echo '<header class="">';
@@ -101,6 +102,7 @@
                             echo '</p>';
                             echo '<button style="margin:1%;" class="button is-success">Finalizar Compra</button>';
                           echo '</header>';
+                           echo '</div>';
                      } 
                     ?> 
                     

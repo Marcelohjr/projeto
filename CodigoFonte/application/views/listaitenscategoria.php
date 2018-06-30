@@ -51,10 +51,10 @@
                       } 
                      echo '<div class="column" style="max-width: 20%;">';
                      echo '<div class="card-an h-100">';
-                     echo '<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>';
+                     echo '<a href="'.base_url('index.php/detalhe/').$prod->idProduto.'"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>';
                      echo '<div class="card-body" >';
                      echo '<h4 class="card-title">';
-                     echo '<a href="#">'.$prod->nomeProduto.'</a>';
+                     echo '<a href="'.base_url('index.php/detalhe/').$prod->idProduto.'">'.$prod->nomeProduto.'</a>';
                      echo '</h4>';
                      $valor = $prod->valorCusto + (($prod->valorCusto*$prod->percentualLucro)/100);
                      echo '<h5>R$ &nbsp;'.$valor.'</h5>';

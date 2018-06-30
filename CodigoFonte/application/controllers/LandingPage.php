@@ -284,7 +284,7 @@ class LandingPage extends CI_Controller {
 			'desconto' => $desconto,
 			'categoria' => $categoria,
 			'quantidade' => $quantidade,
-			'datadecadastro' => 'now()',
+			'datadecadastro' => '',
 			'qntvendas' => 0,
 			'genero' => $genero
 			);
@@ -303,4 +303,49 @@ class LandingPage extends CI_Controller {
 			header('Location: admin');
 		}
 	}
+
+	public function ShowProdutoDetalhe($id)
+	{
+		$this->LoadBase();
+		$this->load->model('CategoriaModel');
+		$dados['categorias']=$this->CategoriaModel->getCategorias();
+		$this->load->model('ProdutoModel');
+		$dados['dadosProduto']=$this->ProdutoModel->getProdutoById($id);
+		$this->load->model('ComentariosModel');
+		$dados['comentarios']=$this->ComentariosModel->getComentariosByIdProduct($id);
+		$dados['home']="";
+		$dados['sobre']="";
+		$this->load->view('produtoDetalhe', $dados);
+	}
+	public function Comentar($idPessoa, $idProduto)
+	{
+		$comentarioConteudo = $_POST['conteudo'];
+		$this->LoadBase();
+		$this->load->model('CategoriaModel');
+		$dados['categorias']=$this->CategoriaModel->getCategorias();
+		$this->load->model('ProdutoModel');
+		$dados['dadosProduto']=$this->ProdutoModel->getProdutoById($idProduto);
+		$dadosComentario = array(
+			'fkPessoa' => $idPessoa,
+			'fkProduto' => $idProduto,
+			'comentarioConteudo' => $comentarioConteudo
+			);
+		$str = $this->db->insert_string('Comentarios', $dadosComentario);
+		$this->db->query($str);
+		$sucess = $this->db->affected_rows();
+		if ($sucess) {
+			$this->session->set_userdata('mensage', 1);
+			$this->session->set_userdata('tipomensage', 'is-success');
+			$this->session->set_userdata('mensagem', 'Comentário adicionado com sucesso!');
+			header('Location:'.base_url('index.php/detalhe/').$idProduto);
+		}else{
+			$this->session->set_userdata('mensage', 1);
+			$this->session->set_userdata('tipomensage', 'is-danger');
+			$this->session->set_userdata('mensagem', 'Falha ao efetuar comentário! Informe ao administrador.');
+			header('Location:'.base_url('index.php/detalhe/').$idProduto);
+		}
+	}
+
+
+
 }
