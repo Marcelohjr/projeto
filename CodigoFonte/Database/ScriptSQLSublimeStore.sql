@@ -73,3 +73,23 @@ create table ItemVenda(
     foreign key(fkVenda) references Vendas(idVenda),
 	foreign key(fkProduto) references Produtos(idProduto)
 );
+create table Comentarios(
+	idComentario int not null auto_increment,
+	fkPessoa int,
+    fkProduto int,
+    comentarioConteudo text,
+    primary key(idComentario),
+    foreign key(fkPessoa) references Pessoas(idPessoa),
+    foreign key(fkProduto) references Produtos(idProduto)
+);
+create view vwComentarios as
+select pe.nome as pessoaNome,
+	pro.nomeProduto,
+    idComentario,
+    fkProduto,
+    comentarioConteudo
+from Comentarios
+join Pessoas as pe on fkPessoa = idPessoa
+join Produtos as pro on fkProduto = idProduto;
+drop view vwComentarios;
+select * from vwComentarios where fkProduto =1;
