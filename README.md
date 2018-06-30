@@ -7,6 +7,9 @@
 # 4 - fazer upload de imagens
 # 5 - recuperar imagens do banco de dados
 # 6 - chatbot
-# 7 - produtos detalhes
-# 8 - Apos finalizar a compra desenvolver pagina para conferir dados, verificar estoque e assim concluir a venda
-# 9 - Desenvolver a função "Editar" de categoria e produtos no modulo administrador
+# 7 - Apos finalizar a compra desenvolver pagina para conferir dados, verificar estoque e assim concluir a venda
+# 8 - Desenvolver a função "Editar" de categoria e produtos no modulo administrador
+# 9 - Tratar TODAS as imagens do site, desde formilários para upload até links para recuperação.
+# 10 - Concluir modulo administrador
+# 11 - Concluir rodapé
+# 12 - adicionar data e hora atual em produtos no controlador na função de cadastro do produto 
